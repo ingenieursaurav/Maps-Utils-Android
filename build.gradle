@@ -74,7 +74,7 @@ allprojects {
  */
 project.ext.preDexLibs = !project.hasProperty('disablePreDex')
 
-subprojects {
+subprojects { project ->
     project.plugins.whenPluginAdded { plugin ->
         if (rootProject.ext.has('preDexLibs')) {
             if ("com.android.build.gradle.AppPlugin" == plugin.class.name) {
@@ -84,4 +84,20 @@ subprojects {
             }
         }
     }
+
+    if (project.name == 'demo') {
+        return
+    }
+
+    apply plugin: 'com.android.library'
+    apply plugin: 'jacoco-android'
+
+    jacoco {
+        toolVersion = "0.8.4"
+    }
+
+    tasks.withType(Test) {
+        jacoco.includeNoLocationClasses = true
+    }
+
 }
