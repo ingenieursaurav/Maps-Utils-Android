@@ -43,7 +43,7 @@ android {
 
 dependencies {
     implementation project(':library')
-    implementation project(':android-maps-utils-ktx')
+    implementation project(':library-ktx')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
 
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
